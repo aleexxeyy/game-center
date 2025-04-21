@@ -1,11 +1,23 @@
 {
   "Version": 1,
-  "Hash": "g2aNYc8+Ba5gwcrkQJQe5DUDLdNYfbJu71E1mt93PWk=",
+  "Hash": "bkgjb0JKCKLOZpOgMW1gTLWXWP17ytI1YsRJEVS7+BU=",
   "Source": "Games",
   "BasePath": "_content/Games",
   "Mode": "Default",
   "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "D:\\Works\\Learn3\\Project\\GameCenter\\backend\\games.server\\GameHub\\GameHub.csproj",
+      "Version": 2,
+      "Source": "GameHub",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
+    }
+  ],
   "DiscoveryPatterns": [],
   "Assets": [],
   "Endpoints": []
