@@ -25,15 +25,10 @@ namespace Games.Services
 
         public IEnumerable<GameModel> GetAvailableGames() => _games;
 
-        public Task<string> SelectGameAsync(string gameId, string creator)
+        public Task<string> SelectGameAsync()
         {
-            var game = _games.FirstOrDefault(g => g.Id == gameId);
-            if (game == null)
-                throw new Exception("Игра не найдена");
-
-            var roomId = Guid.NewGuid().ToString();
-
-            return Task.FromResult(roomId);
+            //TODOO: realize this method
+            throw new NotImplementedException();
         }
     }
 }

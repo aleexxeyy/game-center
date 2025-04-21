@@ -6,6 +6,6 @@ namespace Games.Services
     public interface IGameService
     {
         IEnumerable<GameModel> GetAvailableGames();
-        Task<string> SelectGameAsync(string gameId, string creator);
+        Task<string> SelectGameAsync();
     }
 }

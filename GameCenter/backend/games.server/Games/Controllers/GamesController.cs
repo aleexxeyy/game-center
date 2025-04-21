@@ -29,20 +29,10 @@ namespace Games.Controllers
         }
 
         [HttpPost("select")]
-        public async Task<IActionResult> SelectGame([FromBody] string gameId)
+        public async Task<IActionResult> SelectGame()
         {
-            if (string.IsNullOrWhiteSpace(gameId))
-                return BadRequest("Game ID is required");
-
-            var creator = _hub.Creator;
-
-            var selectedGame = await _service.SelectGameAsync(gameId, creator);
-            if (selectedGame == null)
-                return NotFound("Игра не найдена");
-
-            var roomId = Guid.NewGuid().ToString();
-
-            return Ok(new { RoomId = roomId });
+            //TODOO: realize this method
+            throw new NotImplementedException();
         }
     }
 }
