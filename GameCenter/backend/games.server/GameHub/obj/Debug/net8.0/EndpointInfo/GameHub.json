@@ -1,0 +1,94 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "GameHub",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/GameHubs/create": {
+      "post": {
+        "tags": [
+          "GameHubs"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/GameHubs/join": {
+      "post": {
+        "tags": [
+          "GameHubs"
+        ],
+        "parameters": [
+          {
+            "name": "gameId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/GameHubs/get-games": {
+      "get": {
+        "tags": [
+          "GameHubs"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": { }
+}

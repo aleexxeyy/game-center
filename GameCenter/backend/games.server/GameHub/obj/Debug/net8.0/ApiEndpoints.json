@@ -1,0 +1,49 @@
+[
+  {
+    "ContainingType": "GameHub.Controllers.GameHubsController",
+    "Method": "CreateGame",
+    "RelativePath": "api/GameHubs/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "creator",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GameHub.Controllers.GameHubsController",
+    "Method": "GetGames",
+    "RelativePath": "api/GameHubs/get-games",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GameHub.Controllers.GameHubsController",
+    "Method": "JoinGame",
+    "RelativePath": "api/GameHubs/join",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "gameId",
+        "Type": "System.Guid",
+        "IsRequired": false
+      },
+      {
+        "Name": "player",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

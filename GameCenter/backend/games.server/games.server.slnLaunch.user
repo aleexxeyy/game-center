@@ -1,0 +1,19 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "Auth\\Auth.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Game\\XO.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "GameHub\\GameHub.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
