@@ -1,9 +1,7 @@
 using XO.Services;
 using GameHub.DataBaseContext;
-using GameHub.Hubs;
 using GameHub.Repositories;
 using GameHub.Services;
-using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
