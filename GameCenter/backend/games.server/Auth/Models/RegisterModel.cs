@@ -2,7 +2,7 @@
 
 namespace Auth.Models
 {
-    public class RegisterModel
+    public record RegisterModel
     {
         [Required(ErrorMessage = "Username is required")]
         public string UserName { get; init; }
