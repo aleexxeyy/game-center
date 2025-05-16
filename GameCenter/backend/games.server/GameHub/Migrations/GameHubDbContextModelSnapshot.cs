@@ -17,7 +17,7 @@ namespace GameHub.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.1")
+                .HasAnnotation("ProductVersion", "9.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -35,11 +35,11 @@ namespace GameHub.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("PlayerO")
+                    b.Property<string>("Player1")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("PlayerX")
+                    b.Property<string>("Player2")
                         .IsRequired()
                         .HasColumnType("text");
 

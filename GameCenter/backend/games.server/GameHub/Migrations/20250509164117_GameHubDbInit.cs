@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace GameHub.Migrations
 {
     /// <inheritdoc />
-    public partial class GameHubsInit : Migration
+    public partial class GameHubDbInit : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,8 +17,8 @@ namespace GameHub.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Creator = table.Column<string>(type: "text", nullable: false),
-                    PlayerX = table.Column<string>(type: "text", nullable: false),
-                    PlayerO = table.Column<string>(type: "text", nullable: false),
+                    Player1 = table.Column<string>(type: "text", nullable: false),
+                    Player2 = table.Column<string>(type: "text", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     Status = table.Column<string>(type: "text", nullable: false)
                 },
