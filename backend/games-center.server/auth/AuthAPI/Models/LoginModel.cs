@@ -1,9 +1,8 @@
-﻿using AuthAPI.Data;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace AuthAPI.Models
 {
-    public class RegisterModel
+    public class LoginModel
     {
         [Required(ErrorMessage = "User name required")]
         public string UserName { get; set; } = string.Empty;
