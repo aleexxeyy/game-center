@@ -13,9 +13,10 @@ namespace AuthAPI.Services
         private UserManager<User> _userManager;
         private readonly IConfiguration _config;
 
-        public AuthService(UserManager<User> userManager)
+        public AuthService(UserManager<User> userManager, IConfiguration config)
         {
             _userManager = userManager;
+            _config = config;
         }
 
         public async Task<IdentityResult> RegisterAsync(RegisterModel model)
