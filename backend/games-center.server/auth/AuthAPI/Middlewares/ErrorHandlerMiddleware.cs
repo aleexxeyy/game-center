@@ -1,11 +1,11 @@
 namespace AuthAPI.Middlewares;
 
-public class AuthErrorHandlerMiddleware
+public class ErrorHandlerMiddleware
 {
     private readonly RequestDelegate _next;
-    private readonly ILogger<AuthErrorHandlerMiddleware> _logger;
+    private readonly ILogger<ErrorHandlerMiddleware> _logger;
 
-    public AuthErrorHandlerMiddleware(RequestDelegate next, ILogger<AuthErrorHandlerMiddleware> logger)
+    public ErrorHandlerMiddleware(RequestDelegate next, ILogger<ErrorHandlerMiddleware> logger)
     {
         _next = next;
         _logger = logger;

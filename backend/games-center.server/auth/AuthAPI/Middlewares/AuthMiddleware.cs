@@ -1,20 +1,25 @@
+using System.Security.Claims;
+
 namespace AuthAPI.Middlewares;
 
 public class AuthMiddleware
 {
     private readonly RequestDelegate _next;
+    private readonly ILogger<AuthMiddleware> _logger;
 
-    public AuthMiddleware(RequestDelegate next)
+    public AuthMiddleware(RequestDelegate next, ILogger<AuthMiddleware> logger)
     {
         _next = next;
+        _logger = logger;
     }
 
     public async Task InvokeAsync(HttpContext context)
     {
-        var authHeader = context.Request.Headers["Authorization"].FirstOrDefault();
-        if (!string.IsNullOrEmpty(authHeader))
+        // Логируем только факт аутентификации
+        if (context.User.Identity?.IsAuthenticated == true)
         {
-            Console.WriteLine($"[AuthMiddleware] Auth header: {authHeader}");
+            _logger.LogInformation("Authenticated user: {UserId}", 
+                context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
         }
         
         await _next(context);
