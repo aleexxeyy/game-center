@@ -5,7 +5,7 @@ namespace AuthAPI.Models;
 public class Permission
 {
     [Key]
-    public Guid Id { get; init; }  
+    public Guid Id { get; init; }   
     
     [Required]
     public string Name { get; set; } = null!;
