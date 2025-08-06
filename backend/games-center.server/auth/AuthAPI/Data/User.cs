@@ -4,5 +4,6 @@ namespace AuthAPI.Data
 {
     public class User : IdentityUser
     {
+        
     }
 }
