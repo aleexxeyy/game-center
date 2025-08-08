@@ -1,3 +1,4 @@
+using AuthAPI.Constants;
 using AuthAPI.Data;
 using AuthAPI.Dto;
 using AuthAPI.Models;
@@ -11,17 +12,16 @@ public class RoleService(
     UserManager<User> userManager,
     ApplicationDbContext dbContext) : IRoleService
 {
-    public async Task<IEnumerable<RoleDto>> GetAllRolesAsync()
+    public async Task<IEnumerable<RoleResponse>> GetAllRolesAsync()
     {
         return await dbContext.Roles
-            .Select(r => new RoleDto
-            {
-                Name = r.Name,
-                Permissions = dbContext.RolePermissions
+            .Select(r => new RoleResponse(
+                r.Name ?? string.Empty,
+                dbContext.RolePermissions
                     .Where(rp => rp.RoleId == r.Id)
                     .Select(rp => rp.Permission.Name)
                     .ToList()
-            })
+            ))
             .ToListAsync();
     }
 
@@ -51,14 +51,14 @@ public class RoleService(
         await userManager.AddToRoleAsync(user, role);
     }
 
-    public async Task<IEnumerable<PermissionDto>> GetPermissionsForRoleAsync(string role)
+    public async Task<IEnumerable<Permission>> GetPermissionsForRoleAsync(string role)
     {
         var roleEntity = await roleManager.FindByNameAsync(role) 
             ?? throw new ArgumentException("Role not found");
 
         return await dbContext.RolePermissions
             .Where(rp => rp.RoleId == roleEntity.Id)
-            .Select(rp => new PermissionDto { Code = rp.Permission.Name })
+            .Select(rp => new Permission { Name = rp.Permission.Name })
             .ToListAsync();
     }
 

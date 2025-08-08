@@ -5,19 +5,20 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using AuthAPI.Constants;
 
 namespace AuthAPI.Services
 {
     public class AuthService(UserManager<User> userManager, IConfiguration config) : IAuthService
     {
-        public async Task<IdentityResult> RegisterAsync(RegisterModel model)
+        public async Task<IdentityResult> RegisterAsync(RegisterRequest request)
         {
             var user = new User
             {
-                UserName = model.UserName
+                UserName = request.Username
             };
 
-            var result = await userManager.CreateAsync(user, model.Password);
+            var result = await userManager.CreateAsync(user, request.Password);
 
             if (!result.Succeeded)
                 return result;
@@ -27,14 +28,14 @@ namespace AuthAPI.Services
             return result;
         }
 
-        public async Task<string?> LoginAsync(LoginModel model)
+        public async Task<string?> LoginAsync(LoginRequest request)
         {
-            var user = await userManager.FindByNameAsync(model.UserName);
+            var user = await userManager.FindByNameAsync(request.Username);
 
             if (user is null)
                 return null;
 
-            var passwordValid = await userManager.CheckPasswordAsync(user, model.Password);
+            var passwordValid = await userManager.CheckPasswordAsync(user, request.Password);
 
             if (!passwordValid)
                 return null;

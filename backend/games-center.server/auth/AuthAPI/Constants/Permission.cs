@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
+using AuthAPI.Models;
 
-namespace AuthAPI.Models;
+namespace AuthAPI.Constants;
 
 public class Permission
 {

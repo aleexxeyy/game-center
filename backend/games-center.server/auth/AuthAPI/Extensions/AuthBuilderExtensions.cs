@@ -26,7 +26,6 @@ public static class AuthBuilderExtensions
 
         app.UseHttpsRedirection();
         app.UseMiddleware<ErrorHandlerMiddleware>();
-        app.UseMiddleware<AuthMiddleware>();
         app.UseAuthentication();
         app.UseAuthorization();
     }

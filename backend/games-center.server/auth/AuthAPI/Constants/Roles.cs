@@ -1,4 +1,4 @@
-﻿namespace AuthAPI.Data
+﻿namespace AuthAPI.Constants
 {
     public static class Roles
     {

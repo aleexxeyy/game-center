@@ -5,7 +5,7 @@ namespace AuthAPI.Services
 {
     public interface IAuthService
     {
-        Task<IdentityResult> RegisterAsync(RegisterModel model);
-        Task<string?> LoginAsync(LoginModel model);
+        Task<IdentityResult> RegisterAsync(RegisterRequest request);
+        Task<string?> LoginAsync(LoginRequest request);
     }
 }
