@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Auth.API.Models;
 
-public class LoginModels
+public class LoginModel
 {
     [Required(ErrorMessage = "User name is required")]
     public string UserName { get; set; } = string.Empty;
