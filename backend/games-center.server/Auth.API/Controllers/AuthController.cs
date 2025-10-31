@@ -1,6 +1,32 @@
+using Auth.API.Models;
+using Auth.API.Services;
+using Microsoft.AspNetCore.Mvc;
+
 namespace Auth.API.Controllers;
 
-public class AuthController
+[ApiController]
+[Route("api/[controller]")]
+public class AuthController(IAuthService service) : ControllerBase
 {
+    private readonly IAuthService _service = service;
+
+    [HttpPost("/register")]
+    public async Task<IActionResult> Register([FromBody] RegisterModel model)
+    {
+        var user = await _service.RegisterAsync(model);
+
+        return user is not null 
+            ? Ok($"{user} register successfuly") 
+            : BadRequest("User not registered") ;
+    }
     
+    [HttpPost("/login")]
+    public async Task<IActionResult> Login([FromBody] LoginModel model)
+    {
+        var user = await _service.LoginAsync(model);
+
+        return user is not null 
+            ? Ok($"{user} login successfuly") 
+            : Unauthorized($"{user} unauthorized");
+    }
 }
