@@ -10,7 +10,7 @@ public class AuthController(IAuthService service) : Controller
 {
     private readonly IAuthService _service = service;
 
-    [HttpPost("/register")]
+    [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterDto model)
     {
         var user = await _service.RegisterAsync(model);
@@ -20,7 +20,7 @@ public class AuthController(IAuthService service) : Controller
             : BadRequest("User not registered") ;
     }
     
-    [HttpPost("/login")]
+    [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginDto model)
     {
         var user = await _service.LoginAsync(model);
