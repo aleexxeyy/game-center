@@ -5,8 +5,8 @@ using Auth.API.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using DotNetEnv; 
-
+using DotNetEnv;
+using Auth.API.Middlewares;
 Env.Load(); 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -44,16 +44,12 @@ builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 
 var app = builder.Build();
 
-// Сonnected Swagger only in Dev
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(options =>
-    {
-        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Auth API v1");
-        options.RoutePrefix = string.Empty;
-    });
+    app.MapOpenApi();
 }
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
