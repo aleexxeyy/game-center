@@ -44,12 +44,26 @@ builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 
 var app = builder.Build();
 
+// Сonnected Swagger only in Dev
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Auth API v1");
+        options.RoutePrefix = string.Empty;
+    });
+    app.UseDeveloperExceptionPage();
 }
 
-app.UseMiddleware<ExceptionHandlingMiddleware>();
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+else
+{
+    app.UseMiddleware<ExceptionHandlingMiddleware>();
+}
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
