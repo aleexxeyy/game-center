@@ -22,7 +22,7 @@ builder.Services.AddSwaggerGen(options =>
     {
         Title = "Auth API",
         Version = "v1",
-        Description = "API для аутентификации и регистрации пользователей"
+        Description = "API for authentication or register users"
     });
 });
 
