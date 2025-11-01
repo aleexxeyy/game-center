@@ -1,3 +1,4 @@
+using Auth.API.Dto;
 using Auth.API.Models;
 using Auth.API.Repositories;
 using Microsoft.AspNetCore.Identity;
@@ -10,19 +11,19 @@ public class AuthService(IAuthRepository repository, IPasswordHasher<User> passw
     private IPasswordHasher<User> _passwordHasher = passwordHasher;
 
 
-    public Task<User> RegisterAsync(RegisterModel model)
+    public async Task<User> RegisterAsync(RegisterDto model)
     {
-        var exsistingUser = _repository.GetUserByUserName(model.UserName);
+        var exsistingUser = await _repository.GetUserByUserName(model.UserName);
 
         if (exsistingUser is not null)
-            throw new Exception("User is already user name is exist");
+            throw new InvalidOperationException("User name already exists");
 
-        var newUser = _repository.CreateUser(model);
+        var newUser = await _repository.CreateUser(model);
 
         return newUser;
     }
 
-    public async Task<User> LoginAsync(LoginModel model)
+    public async Task<User> LoginAsync(LoginDto model)
     {
         var user = await _repository.GetUserByUserName(model.UserName);
 
