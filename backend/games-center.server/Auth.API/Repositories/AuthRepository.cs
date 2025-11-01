@@ -1,4 +1,5 @@
 using Auth.API.DataAccess;
+using Auth.API.Dto;
 using Auth.API.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -37,7 +38,7 @@ public class AuthRepository : IAuthRepository
             .FirstOrDefaultAsync(u => u.UserName == userName);
     }
     
-    public async Task<User> CreateUser(RegisterModel model)
+    public async Task<User> CreateUser(RegisterDto model)
     {
         if (model is null)
             throw new ArgumentNullException("User data is null");
