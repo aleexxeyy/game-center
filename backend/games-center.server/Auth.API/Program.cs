@@ -5,6 +5,9 @@ using Auth.API.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using DotNetEnv; 
+
+Env.Load(); 
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,8 +27,15 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 // PostgreSQL
+var connectionString =
+    $"Host={Environment.GetEnvironmentVariable("POSTGRES_HOST")};" +
+    $"Port={Environment.GetEnvironmentVariable("POSTGRES_PORT")};" +
+    $"Database={Environment.GetEnvironmentVariable("POSTGRES_DB")};" +
+    $"Username={Environment.GetEnvironmentVariable("POSTGRES_USER")};" +
+    $"Password={Environment.GetEnvironmentVariable("POSTGRES_PASSWORD")};";
+
 builder.Services.AddDbContext<AuthDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseNpgsql(connectionString));
 
 // Dependency Injection
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
