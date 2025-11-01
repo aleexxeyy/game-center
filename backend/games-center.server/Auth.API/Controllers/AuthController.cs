@@ -6,7 +6,7 @@ namespace Auth.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class AuthController(IAuthService service) : ControllerBase
+public class AuthController(IAuthService service) : Controller
 {
     private readonly IAuthService _service = service;
 
