@@ -1,4 +1,4 @@
-using Auth.API.Models;
+using Auth.API.Dto;
 using Auth.API.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,7 +11,7 @@ public class AuthController(IAuthService service) : ControllerBase
     private readonly IAuthService _service = service;
 
     [HttpPost("/register")]
-    public async Task<IActionResult> Register([FromBody] RegisterModel model)
+    public async Task<IActionResult> Register([FromBody] RegisterDto model)
     {
         var user = await _service.RegisterAsync(model);
 
@@ -21,7 +21,7 @@ public class AuthController(IAuthService service) : ControllerBase
     }
     
     [HttpPost("/login")]
-    public async Task<IActionResult> Login([FromBody] LoginModel model)
+    public async Task<IActionResult> Login([FromBody] LoginDto model)
     {
         var user = await _service.LoginAsync(model);
 
