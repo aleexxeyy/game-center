@@ -16,15 +16,32 @@ public class AuthRepository : IAuthRepository
         _dbcontext = dbcontext;
         _passwordHasher = passwordHasher;
     }
-    
+
     public async Task<User?> GetUserById(Guid id)
-        => await _dbcontext.Users.FirstOrDefaultAsync(u => u.Id == id);
+    {
+        if (id == Guid.Empty)
+            throw new ArgumentNullException("ID is null");
+
+        return await _dbcontext
+            .Users
+            .FirstOrDefaultAsync(u => u.Id == id);
+    }
 
     public async Task<User?> GetUserByUserName(string userName)
-        => await _dbcontext.Users.FirstOrDefaultAsync(u => u.UserName == userName);
+    {
+        if (string.IsNullOrEmpty(userName))
+            throw new ArgumentNullException("User name is null or empty");
+
+        return await _dbcontext
+            .Users
+            .FirstOrDefaultAsync(u => u.UserName == userName);
+    }
     
     public async Task<User> CreateUser(RegisterModel model)
     {
+        if (model is null)
+            throw new ArgumentNullException("User data is null");
+
         var newUser = new User
         {
             Id = Guid.NewGuid(),
@@ -40,6 +57,9 @@ public class AuthRepository : IAuthRepository
 
     public async Task<User> UpdateUserName(User user)
     {
+        if (user is null)
+            throw new ArgumentNullException("User data is null");
+
         var existingUser = await GetUserById(user.Id);
 
         if (existingUser is null)
@@ -55,6 +75,9 @@ public class AuthRepository : IAuthRepository
 
     public async Task<User> UpdateUserPassword(User user, string newPassword)
     {
+        if (user is null)
+            throw new ArgumentNullException("User data is null");
+
         var existingUser = await GetUserById(user.Id);
 
         if (existingUser is null)
@@ -70,6 +93,9 @@ public class AuthRepository : IAuthRepository
 
     public async Task DeleteUser(User user)
     {
+        if (user is null)
+            throw new ArgumentNullException("User data is null");
+
         var existingUser = await GetUserById(user.Id);
 
         if (existingUser is null)
