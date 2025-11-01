@@ -16,7 +16,7 @@ public class AuthController(IAuthService service) : ControllerBase
         var user = await _service.RegisterAsync(model);
 
         return user is not null 
-            ? Ok($"{user} register successfuly") 
+            ? Ok($"{user.UserName} register successfuly") 
             : BadRequest("User not registered") ;
     }
     
@@ -26,7 +26,7 @@ public class AuthController(IAuthService service) : ControllerBase
         var user = await _service.LoginAsync(model);
 
         return user is not null 
-            ? Ok($"{user} login successfuly") 
-            : Unauthorized($"{user} unauthorized");
+            ? Ok($"{user.UserName} login successfuly") 
+            : Unauthorized($"{user?.UserName} unauthorized");
     }
 }
